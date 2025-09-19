@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import githubLogo from "../assets/github.png";
+
+const navItems = ["About", "Skills", "Projects", "Contact"];
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleNavbar = () => setIsOpen(!isOpen);
-
   const closeNavbar = () => setIsOpen(false);
 
   const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark");
+    const newTheme = !darkMode;
+    setDarkMode(newTheme);
+
+    if (newTheme) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
   };
 
   // Load saved theme
@@ -22,29 +32,24 @@ function Navbar() {
     }
   }, []);
 
-  // Save theme
-  useEffect(() => {
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
-
   return (
-    <nav className="sticky top-0 z-20 bg-transparent-nav">
+    <nav className="sticky top-0 z-20 bg-transparent">
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="text-2xl font-logo">Prasanth | Frontend Dev</div>
+          <div className="text-xl font-logo">Prasanth.exe</div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <a href="#" className="nav-link">
-              About
-            </a>
-            <a href="#" className="nav-link">
-              Projects
-            </a>
-            <a href="#" className="nav-link">
-              Contact
-            </a>
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="hover:underline"
+              >
+                {item}
+              </a>
+            ))}
 
             {/* Theme Toggle */}
             <button onClick={toggleTheme} className="p-2 rounded-md">
@@ -53,23 +58,12 @@ function Navbar() {
 
             {/* GitHub Icon (Desktop only) */}
             <a
-              href="https://github.com/your-username"
+              href="https://github.com/Prasanth-exe"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center"
             >
-              {/* Light mode logo */}
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                alt="GitHub Light"
-                className="h-6 w-6 dark:hidden"
-              />
-              {/* Dark mode logo */}
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg"
-                alt="GitHub Dark"
-                className="h-6 w-6 hidden dark:block"
-              />
+              <img src={githubLogo} alt="GitHub" className="h-6 w-6" />
             </a>
           </div>
 
@@ -91,17 +85,17 @@ function Navbar() {
             <X size={32} />
           </button>
 
-          {/* Menu Links */}
-          <a href="#" className="nav-link" onClick={closeNavbar}>
-            About
-          </a>
-          <a href="#" className="nav-link" onClick={closeNavbar}>
-            Projects
-          </a>
-          <a href="#" className="nav-link" onClick={closeNavbar}>
-            Contact
-          </a>
-          {/* 🚫 No GitHub icon here */}
+          {/* Menu Links (no GitHub here) */}
+          {navItems.map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="hover:underline"
+              onClick={closeNavbar}
+            >
+              {item}
+            </a>
+          ))}
         </div>
       )}
     </nav>

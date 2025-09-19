@@ -10,13 +10,13 @@ function App() {
       <header>
         <Navbar />
       </header>
-      {/* <main>
+      <main>
         <About />
         <Projects />
       </main>
       <footer>
         <Contact />
-      </footer> */}
+      </footer>
     </>
   );
 }
