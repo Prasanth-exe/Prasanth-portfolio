@@ -52,12 +52,12 @@ function Projects() {
             </div>
 
             {/* Links */}
-            <div className="flex justify-between mt-auto gap-2">
+            <div className="flex justify-start mt-auto gap-2">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center bg-[var(--text-color)] text-[var(--bg-color)] rounded-lg px-3 py-1 text-sm hover:opacity-80 transition"
+                className="button px-3 py-1 text-sm"
               >
                 GitHub
               </a>
@@ -67,9 +67,9 @@ function Projects() {
                   href={project.liveDemo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 text-center text-[var(--text-color)] border border-[var(--text-color)] rounded-lg px-3 py-1 text-sm hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition"
+                  className="button button-outline px-3 py-1 text-sm"
                 >
-                  Live Demo
+                  Demo
                 </a>
               )}
             </div>

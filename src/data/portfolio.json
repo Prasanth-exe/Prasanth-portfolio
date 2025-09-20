@@ -2,6 +2,7 @@
   "name": "Prasanth",
   "role": "Frontend Developer",
   "description": "I am a front-end enthusiast with a passion for building beautiful and functional websites. I enjoy bringing digital ideas to life, one line of code at a time. Exploring modern technologies to create engaging user experiences.",
+  "resume":"https://www.dropbox.com/scl/fi/szz2jp8xe4yv5mshutqhd/Prasanth_Resume.pdf?rlkey=xwge6hhd8b7fknmbj600xkh4u&st=qmuwqbbi&dl=0",
   "about": {
     "bio": "Passionate developer with expertise in building scalable web applications and creating innovative solutions.",
     "frontendSkills": [
@@ -49,21 +50,17 @@
         "React",
         "Tailwind",
         "JavaScript",
-        "API"
+        "API",
+        "Redux"
       ]
     },
     {
-      "title": "Local Events Finder",
-      "description": "A platform to discover small local events and reviews.",
-      "image": "../assets/project-images/local-events.png",
-      "link": "https://github.com/Prasanth-exe/local-events",
-      "liveDemo": "https://prasanth-exe.github.io/local-events",
-      "techStack": [
-        "React",
-        "Tailwind",
-        "JavaScript",
-        "Firebase"
-      ]
+      "title": "Pneumonia Detection using CNN",
+      "description": "This project uses Convolutional Neural Networks (CNNs) to detect pneumonia from chest X-ray images.",
+      "image": "https://raw.githubusercontent.com/Prasanth-exe/Pneumonia-Detection/main/x-ray-image.jpg",
+      "link": "https://github.com/Prasanth-exe/Pneumonia-Detection",
+      "liveDemo": "",
+      "techStack": ["numpy", "pandas", "cv2", "matplotlib", "tensorflow", "keras", "sklearn.metrics"]
     }
   ],
   "contact": {

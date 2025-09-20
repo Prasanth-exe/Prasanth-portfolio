@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import data from "../data/portfolio.json";
 
 function Contact() {
   const { email, phone } = data.contact;
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission via mailto
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const mailtoLink = `mailto:${email}?subject=Message from ${
+      form.name
+    }&body=${encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+    )}`;
+    window.location.href = mailtoLink;
+  };
 
   return (
     <section id="contact" className="py-12 max-w-4xl mx-auto px-6">
@@ -19,13 +36,13 @@ function Contact() {
         <div className="w-full md:w-1/3 space-y-4">
           <h3 className="text-xl font-semibold">Contact Details</h3>
           <div className="flex items-center gap-3 p-3 border border-[var(--text-color)]/20 rounded-lg">
-            <Mail className="h-5 w-5 text-[var(--accent-color)]" />
+            <Mail className="h-5 w-5 text-[var(--primary-color)]" />
             <a href={`mailto:${email}`} className="hover:underline">
               {email}
             </a>
           </div>
           <div className="flex items-center gap-3 p-3 border border-[var(--text-color)]/20 rounded-lg">
-            <Phone className="h-5 w-5 text-[var(--accent-color)]" />
+            <Phone className="h-5 w-5 text-[var(--primary-color)]" />
             <a href={`tel:${phone}`} className="hover:underline">
               {phone}
             </a>
@@ -34,8 +51,7 @@ function Contact() {
 
         {/* Right Side: Contact Form */}
         <form
-          action="https://formspree.io/f/YOUR_UNIQUE_ID" // IMPORTANT: Replace with your Formspree ID
-          method="POST"
+          onSubmit={handleSubmit}
           className="flex flex-col gap-4 w-full md:w-2/3"
         >
           <input
@@ -43,6 +59,8 @@ function Contact() {
             name="name"
             placeholder="Your Name"
             required
+            value={form.name}
+            onChange={handleChange}
             className="border border-[var(--text-color)]/50 rounded-lg px-4 py-2 text-[var(--text-color)] bg-transparent focus:outline-none focus:ring-1 focus:ring-[var(--text-color)]"
           />
           <input
@@ -50,6 +68,8 @@ function Contact() {
             name="email"
             placeholder="Your Email"
             required
+            value={form.email}
+            onChange={handleChange}
             className="border border-[var(--text-color)]/50 rounded-lg px-4 py-2 text-[var(--text-color)] bg-transparent focus:outline-none focus:ring-1 focus:ring-[var(--text-color)]"
           />
           <textarea
@@ -57,12 +77,13 @@ function Contact() {
             name="message"
             placeholder="Your Message"
             required
+            value={form.message}
+            onChange={handleChange}
             className="border border-[var(--text-color)]/50 rounded-lg px-4 py-2 text-[var(--text-color)] bg-transparent focus:outline-none focus:ring-1 focus:ring-[var(--text-color)]"
           ></textarea>
-          <button
-            type="submit"
-            className="bg-[var(--text-color)] text-[var(--bg-color)] rounded-lg px-4 py-2 font-bold hover:bg-opacity-80 transition"
-          >
+
+          {/* Button */}
+          <button type="submit" className="button">
             Send Message
           </button>
         </form>

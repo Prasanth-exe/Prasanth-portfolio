@@ -62,25 +62,29 @@ function Home() {
         {data.description}
       </motion.p>
 
-      {/* Buttons */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
         className="flex space-x-4"
       >
-        <a
+        <motion.a
           href="#projects"
-          className="px-6 py-3 rounded-lg bg-[var(--text-color)] text-[var(--bg-color)] hover:opacity-80 transition"
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          className="button"
         >
           View Projects
-        </a>
-        <a
+        </motion.a>
+
+        <motion.a
           href="#contact"
-          className="px-6 py-3 rounded-lg border border-[var(--text-color)] text-[var(--text-color)] hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition"
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          className="button button-outline"
         >
           Contact Me
-        </a>
+        </motion.a>
       </motion.div>
     </section>
   );

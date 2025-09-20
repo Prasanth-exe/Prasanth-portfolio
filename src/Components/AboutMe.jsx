@@ -8,7 +8,7 @@ function About() {
 
   return (
     <section
-      id="about"
+      id="about-me"
       className="mt-8 md:mt-12 py-12 max-w-4xl mx-auto px-6 space-y-10"
     >
       {/* Title */}
@@ -24,14 +24,19 @@ function About() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <div className="flex items-center gap-2 px-3 py-1 border border-dashed border-[var(--text-color)] rounded-full text-sm">
-            <Code size={18} />
-            <span>{frontendSkills.join(", ")}</span>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-1 border border-dashed border-[var(--text-color)] rounded-full text-sm">
-            <FileText size={18} />
-            <span>{languages.join(", ")}</span>
-          </div>
+          {frontendSkills.map((skill, i) => (
+            <div key={i} className="skill-button">
+              <Code size={18} />
+              <span>{skill}</span>
+            </div>
+          ))}
+
+          {languages.map((lang, i) => (
+            <div key={i} className="skill-button">
+              <FileText size={18} />
+              <span>{lang}</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -47,8 +52,9 @@ function About() {
                 {edu.degree} — {edu.institution}{" "}
                 <span className="text-sm">({edu.duration})</span>
               </p>
-              <p className="text-sm text-gray dark:text-gray-600">
-                Coursework: {edu.coursework.join(", ")}
+              <p className="text-sm text-gray secondary-color">
+                <span className="font-bold">Coursework: </span>
+                {edu.coursework.join(", ")}
               </p>
             </div>
           ))}
